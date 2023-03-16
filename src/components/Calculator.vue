@@ -106,8 +106,8 @@ export default{
                 <h2  class="res">{{ result }}</h2>
             </div>
             <div class="buttons-container">
-                <button class="element o" value="CE" @click="handleButtonClick($event)">CE</button>
-                <button class="element o" value="C" @click="handleButtonClick($event)">C</button>
+                <button class="element del" value="CE" @click="handleButtonClick($event)">CE</button>
+                <button class="element del" value="C" @click="handleButtonClick($event)">C</button>
                 <button class="element" @click="iconAnimation()"><img :class="iconClass" src="../img/vue.png"></button>
                 <button class="element" 
                         data-bs-toggle="offcanvas" 
@@ -118,25 +118,32 @@ export default{
                 <button class="element" value="7" @click="handleButtonClick($event)">7</button>
                 <button class="element" value="8" @click="handleButtonClick($event)">8</button>
                 <button class="element" value="9" @click="handleButtonClick($event)">9</button>
-                <button class="element operation o" value="*" @click="handleButtonClick($event)">x</button>
+                <button class="element operation " value="*" @click="handleButtonClick($event)">x</button>
                 <button class="element" value="4" @click="handleButtonClick($event)">4</button>
                 <button class="element" value="5" @click="handleButtonClick($event)">5</button>
                 <button class="element" value="6" @click="handleButtonClick($event)">6</button>
-                <button class="element operation o" value="-" @click="handleButtonClick($event)">-</button>
+                <button class="element operation " value="-" @click="handleButtonClick($event)">-</button>
                 <button class="element" value="1" @click="handleButtonClick($event)">1</button>
                 <button class="element" value="2" @click="handleButtonClick($event)">2</button>
                 <button class="element" value="3" @click="handleButtonClick($event)">3</button>
-                <button class="element operation o" value="+" @click="handleButtonClick($event)">+</button>
-                <button class="element o" value="/" @click="handleButtonClick($event)">/</button>
+                <button class="element operation " value="+" @click="handleButtonClick($event)">+</button>
+                <button class="element operation " value="/" @click="handleButtonClick($event)">/</button>
                 <button class="element" value="0" @click="handleButtonClick($event)">0</button>
-                <button class="element operation o" value="." @click="handleButtonClick($event)">.</button>
-                <button class="element operation e" value="=" @click="handleButtonClick($event)">=</button>
+                <button class="element operation " value="." @click="handleButtonClick($event)">.</button>
+                <button class="element equals" value="=" @click="handleButtonClick($event)">=</button>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
+.main-container{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background: rgb(186,172,172);
+    background: linear-gradient(138deg, rgba(186,172,172,1) 24%, rgba(126,126,136,1) 49%, rgba(89,95,98,1) 75%);
+}
 .trashcan{
     width: 20px;
     margin-left: 5px;
@@ -146,12 +153,27 @@ export default{
     border-bottom: 1px solid #c5fc00;
     margin-bottom: 15px;
 }
-.o{
-    background-color: #c5fc00;
+.result-container{
+    text-align: right;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 5px 10px;
+    height: 120px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
 }
-.e{
-    background-color: rgb(41, 41, 248);
-    color: wheat;
+.calculator-parent {
+    width: 35%;
+    margin: 5px;
+    padding: 20px;
+    border: 2px solid rgb(46, 230, 0);
+    background-color: #221f1f;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
 }
 h4.res{
     color: #555;
@@ -170,28 +192,30 @@ h2.res::-webkit-scrollbar {
   width: 8px;
   height: 3px;
 }
-
 h4.res::-webkit-scrollbar-track,
 h2.res::-webkit-scrollbar-track {
   background-color: #f1f1f1;
 }
-
 h4.res::-webkit-scrollbar-thumb,
 h2.res::-webkit-scrollbar-thumb {
   background-color: #000000;
   border-radius: 15px;
 }
-
 h4.res::-webkit-scrollbar-thumb:hover,
 h2.res::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
-.main-container{
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background: rgb(186,172,172);
-    background: linear-gradient(138deg, rgba(186,172,172,1) 24%, rgba(126,126,136,1) 49%, rgba(89,95,98,1) 75%);
+.operation{
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #c5fc00;
+}
+.del{
+    background-color: #c5fc00;
+}
+.equals{
+    background-color: rgb(41, 41, 248);
+    color: wheat;
 }
 .element{
     border: none;
@@ -199,32 +223,6 @@ h2.res::-webkit-scrollbar-thumb:hover {
     display: grid;
     place-items: center;
     padding: 10px 0 10px 0;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-}
-.operation{
-    font-size: 25px;
-    font-weight: bold;
-}
-.calculator-parent {
-    width: 35%;
-    margin: 5px;
-    padding: 20px;
-    border: 2px solid rgb(46, 230, 0);
-    background-color: #221f1f;
-    border-radius: 15px;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-}
-.result-container{
-    text-align: right;
-    background-color: white;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    padding: 5px 10px;
-    height: 120px;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
