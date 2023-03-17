@@ -48,10 +48,12 @@ export default{
             }
         },
         resultOperation(){
-            this.history.push({
-                operationH: this.operation,
-                resultH: this.result
-            })
+           if(this.operation != ""){
+                this.history.push({
+                    operationH: this.operation,
+                    resultH: this.result
+                })
+           }
             this.operation = '';           
         },
         verifyLastOperator(){
