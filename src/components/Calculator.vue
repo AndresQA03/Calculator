@@ -152,6 +152,7 @@ export default{
 .history-element{
     border-bottom: 1px solid #c5fc00;
     margin-bottom: 15px;
+    word-wrap: break-word;
 }
 .result-container{
     text-align: right;
@@ -166,6 +167,7 @@ export default{
 }
 .calculator-parent {
     width: 35%;
+    overflow: hidden;
     margin: 5px;
     padding: 20px;
     border: 2px solid rgb(46, 230, 0);
